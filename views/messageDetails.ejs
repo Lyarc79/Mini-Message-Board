@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Details</title>
+    </head>
+  <body>
+    <h2><%= message.user %></h2>
+    <p><%= message.text %></p>
+    <em><%= message.added.toLocaleDateString('en-GB') %> at <%= message.added.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit', hour12: false}).toLowerCase().replace(' ', '') %></em>
+    <br />
+    <a href="/">Back to Board</a>
+  </body>
+</html>
