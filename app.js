@@ -1,3 +1,6 @@
+const { loadEnvFile } = require("node:process");
+loadEnvFile("./config/.env");
+
 const express = require("express");
 const app = express();
 const path = require("node:path");
