@@ -1,31 +1,26 @@
 const { Router } = require("express");
-
+const messagesController = require("../controllers/messagesController");
 const indexRouter = Router();
+const { body } = require("express-validator");
 
-const messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
+const validateMessage = [
+  body("authorName")
+    .trim()
+    .notEmpty()
+    .withMessage("Name cannot be empty.")
+    .isLength({ min: 2, max: 30 })
+    .withMessage("Name must have between 2 and 30 characters."),
+  body("messageText")
+    .trim()
+    .notEmpty()
+    .withMessage("Message cannot be empty.")
+    .isLength({ max: 500 })
+    .withMessage("Maximum length is 500 characters."),
 ];
 
-indexRouter.get("/", (req, res) => {
-  res.render("index", { title: "Mini Messageboard", messages: messages });
-});
-indexRouter.get("/new", (req, res) => res.render("form"));
-indexRouter.post("/new", (req, res) => {
-  const { authorName, messageText } = req.body;
-  messages.push({ text: messageText, user: authorName, added: new Date() });
-  res.redirect("/");
-});
-indexRouter.get("/message/:id", (req, res) => {
-  res.render("messageDetails", { message: messages[req.params.id] });
-});
+indexRouter.get("/", messagesController.getMessages);
+indexRouter.get("/new", messagesController.renderForm);
+indexRouter.post("/new", validateMessage, messagesController.createMessagePost);
+indexRouter.get("/message/:id", messagesController.getMessageDetails);
 
 module.exports = indexRouter;
