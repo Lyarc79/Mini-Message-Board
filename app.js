@@ -1,5 +1,7 @@
 const { loadEnvFile } = require("node:process");
-loadEnvFile("./config/.env");
+try {
+  process.loadEnvFile("./config/.env");
+} catch (error) {}
 
 const express = require("express");
 const app = express();
