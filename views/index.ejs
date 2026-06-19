@@ -7,10 +7,10 @@
     <ul>
         <% messages.forEach((message, index) => { %>
             <li>
-                <strong><%= message.user %></strong>
+                <strong><%= message.username %></strong>
                 <p><%= message.text %></p>
                 <em><%= message.added.toLocaleDateString('en-GB') %> at <%= message.added.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit', hour12: false}).toLowerCase().replace(' ', '') %></em>
-                <a href="/message/<%=index%>">Open</a>
+                <a href="/message/<%=message.id%>">Open</a>
             </li> 
             <br />
         <% })%>

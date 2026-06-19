@@ -3,7 +3,7 @@
         <title>Details</title>
     </head>
   <body>
-    <h2><%= message.user %></h2>
+    <h2><%= message.username %></h2>
     <p><%= message.text %></p>
     <em><%= message.added.toLocaleDateString('en-GB') %> at <%= message.added.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit', hour12: false}).toLowerCase().replace(' ', '') %></em>
     <br />

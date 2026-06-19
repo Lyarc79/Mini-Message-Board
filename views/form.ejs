@@ -4,9 +4,22 @@
   </head>
   <body>
     <h2>Create a New Message</h2>
+    <%- include("partials/errors.ejs") %>
     <form method="POST" action="/new">
-      <label>Author:<input name="authorName" type="text" /></label>
-      <label>Message:<input name="messageText" type="text" /></label>
+      <label
+        >Author:<input
+          name="authorName"
+          type="text"
+          value="<%= locals.authorName || '' %>"
+          required
+      /></label>
+      <label
+        >Message:<input
+          name="messageText"
+          type="text"
+          value="<%= locals.messageText || '' %>"
+          required
+      /></label>
       <button type="submit">Send</button>
       <a href="/">Go Back</a>
     </form>
